@@ -1,0 +1,18 @@
+/* src/styles/globals.css */
+
+/* Tailwind imports */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* src/styles/globals.css */
+
+/* Custom Global Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  h1, h2 {
+    color: #333;
+  }
+  

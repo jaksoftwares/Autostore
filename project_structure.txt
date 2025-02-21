@@ -1,0 +1,121 @@
+.
+├── .env
+├── .gitignore
+├── README.md
+├── eslint.config.mjs
+├── minimalprojectstructure.sh
+├── next-env.d.ts
+├── next.config.ts
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── prisma
+│   └── schema.prisma
+├── project_structure.txt
+├── projectstructure.sh
+├── public
+│   ├── file.svg
+│   ├── globe.svg
+│   ├── next.svg
+│   ├── vercel.svg
+│   └── window.svg
+├── src
+│   ├── app
+│   │   ├── about
+│   │   │   └── page.tsx
+│   │   ├── account
+│   │   │   └── page.tsx
+│   │   ├── admin
+│   │   │   └── page.tsx
+│   │   ├── affiliate
+│   │   │   └── page.tsx
+│   │   ├── api
+│   │   │   ├── auth
+│   │   │   │   └── route.ts
+│   │   │   ├── orders
+│   │   │   │   └── route.ts
+│   │   │   ├── payments
+│   │   │   │   └── route.ts
+│   │   │   ├── products
+│   │   │   │   └── route.ts
+│   │   │   ├── users
+│   │   │   │   └── route.ts
+│   │   │   └── vendors
+│   │   │       └── route.ts
+│   │   ├── blog
+│   │   │   └── page.tsx
+│   │   ├── careers
+│   │   │   └── page.tsx
+│   │   ├── cart
+│   │   │   └── page.tsx
+│   │   ├── checkout
+│   │   │   └── page.tsx
+│   │   ├── compare
+│   │   │   └── page.tsx
+│   │   ├── contact
+│   │   │   └── page.tsx
+│   │   ├── faq
+│   │   │   └── page.tsx
+│   │   ├── home
+│   │   │   └── page.tsx
+│   │   ├── layout.tsx
+│   │   ├── loyalty
+│   │   │   └── page.tsx
+│   │   ├── order
+│   │   │   └── page.tsx
+│   │   ├── page.tsx
+│   │   ├── privacy
+│   │   │   └── page.tsx
+│   │   ├── product
+│   │   │   └── page.tsx
+│   │   ├── returns
+│   │   │   └── page.tsx
+│   │   ├── shipping
+│   │   │   └── page.tsx
+│   │   ├── shop
+│   │   │   └── page.tsx
+│   │   ├── sitemap
+│   │   │   └── page.tsx
+│   │   ├── support
+│   │   │   └── page.tsx
+│   │   ├── terms
+│   │   │   └── page.tsx
+│   │   ├── vendor
+│   │   │   └── page.tsx
+│   │   └── wishlist
+│   │       └── page.tsx
+│   ├── components
+│   │   ├── buttons
+│   │   ├── common
+│   │   │   └── Loader.tsx
+│   │   ├── forms
+│   │   ├── layout
+│   │   │   ├── Footer.tsx
+│   │   │   └── Header.tsx
+│   │   ├── modals
+│   │   └── ui
+│   │       ├── Button.tsx
+│   │       └── Input.tsx
+│   ├── context
+│   │   ├── AuthContext.tsx
+│   │   └── CartContext.tsx
+│   ├── hooks
+│   │   ├── useAuth.ts
+│   │   └── useCart.ts
+│   ├── layouts
+│   ├── lib
+│   ├── services
+│   │   ├── api.ts
+│   │   └── auth.ts
+│   ├── src-setup.sh
+│   ├── store
+│   ├── styles
+│   │   └── global.css
+│   ├── types
+│   └── utils
+│       ├── constants.ts
+│       └── helpers.ts
+├── tailwind.config.ts
+└── tsconfig.json
+
+52 directories, 67 files

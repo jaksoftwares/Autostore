@@ -1,21 +1,137 @@
 import React from "react";
+import Link from "next/link";
+import { FaShippingFast, FaHeadset, FaShieldAlt, FaCar } from "react-icons/fa";
 
 export default function HomePage() {
     return (
-        <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100 px-6">
-            <h1 className="text-5xl font-bold text-gray-900">Welcome to AutoStore</h1>
-            <p className="text-lg text-gray-700 mt-4 text-center">
-                Your #1 Marketplace for Auto Parts. Find quality spare parts, accessories, and car essentials at the best prices.
-            </p>
+            <main className="bg-gray-100 w-full overflow-x-hidden">
+            {/* Hero Section */}
+            <section className="w-full h-[500px] flex flex-col items-center justify-center text-center bg-cover bg-center text-white px-6 relative"style={{ backgroundImage: "url('/bg1.png')" }} >
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
-            <div className="mt-6 flex space-x-4">
-                <a href="/shop" className="px-6 py-3 bg-blue-600 text-white rounded-lg text-lg font-semibold hover:bg-blue-700 transition">
-                    Shop Now
-                </a>
-                <a href="/contact" className="px-6 py-3 border border-gray-900 text-gray-900 rounded-lg text-lg font-semibold hover:bg-gray-900 hover:text-white transition">
-                    Contact Us
-                </a>
-            </div>
+                {/* Content */}
+                <div className="relative z-10 max-w-3xl w-full">
+                <h1 className="text-5xl font-extrabold">Welcome to AutoStore</h1>
+                <p className="text-lg mt-4">
+                    Your #1 Marketplace for Auto Parts. Find quality spare parts, accessories, and car essentials at the best prices.
+                </p>
+                <div className="mt-6 flex justify-center space-x-4">
+                    <Link href="/shop"className="px-6 py-3 bg-red-600 text-white rounded-lg text-lg font-semibold hover:bg-red-700 transition">Shop Now</Link>
+                    <Link href="/contact" className="px-6 py-3 border border-white text-white rounded-lg text-lg font-semibold hover:bg-white hover:text-red-600 transition" > Contact Us </Link>
+                </div>
+                </div>
+            </section>
+
+            {/* Benefits Section */}
+            <section className="py-12 bg-white text-center">
+                <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-8 px-6">
+                    <div className="flex flex-col items-center">
+                        <FaShippingFast className="text-red-600 text-4xl" />
+                        <h3 className="text-lg font-semibold mt-2">Fast Shipping</h3>
+                        <p className="text-sm text-gray-600">Get your parts delivered quickly and securely.</p>
+                    </div>
+                    <div className="flex flex-col items-center">
+                        <FaHeadset className="text-red-600 text-4xl" />
+                        <h3 className="text-lg font-semibold mt-2">24/7 Support</h3>
+                        <p className="text-sm text-gray-600">Our team is ready to assist you anytime.</p>
+                    </div>
+                    <div className="flex flex-col items-center">
+                        <FaShieldAlt className="text-red-600 text-4xl" />
+                        <h3 className="text-lg font-semibold mt-2">Secure Payments</h3>
+                        <p className="text-sm text-gray-600">Safe transactions with trusted gateways.</p>
+                    </div>
+                    <div className="flex flex-col items-center">
+                        <FaCar className="text-red-600 text-4xl" />
+                        <h3 className="text-lg font-semibold mt-2">Wide Selection</h3>
+                        <p className="text-sm text-gray-600">Thousands of parts for all car models.</p>
+                    </div>
+                </div>
+            </section>
+
+            {/* Featured Categories */}
+            <section className="py-12 bg-gray-50 text-center">
+                <h2 className="text-3xl font-bold text-gray-900">Shop by Category</h2>
+                <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 mt-6 px-6">
+                    <div className="p-6 bg-white rounded-lg shadow hover:shadow-lg transition">
+                        <h3 className="text-lg font-semibold">Engine Parts</h3>
+                    </div>
+                    <div className="p-6 bg-white rounded-lg shadow hover:shadow-lg transition">
+                        <h3 className="text-lg font-semibold">Brakes & Suspension</h3>
+                    </div>
+                    <div className="p-6 bg-white rounded-lg shadow hover:shadow-lg transition">
+                        <h3 className="text-lg font-semibold">Exterior Accessories</h3>
+                    </div>
+                    <div className="p-6 bg-white rounded-lg shadow hover:shadow-lg transition">
+                        <h3 className="text-lg font-semibold">Interior Accessories</h3>
+                    </div>
+                </div>
+            </section>
+
+            {/* Featured Products (Trending Items) */}
+            <section className="py-12 bg-white text-center">
+                <h2 className="text-3xl font-bold text-gray-900">Trending Products</h2>
+                <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 mt-6 px-6">
+                    <div className="p-6 bg-gray-100 rounded-lg shadow hover:shadow-lg transition">
+                        <h3 className="text-lg font-semibold">Car Battery</h3>
+                        <p className="text-red-600 font-bold">$150</p>
+                    </div>
+                    <div className="p-6 bg-gray-100 rounded-lg shadow hover:shadow-lg transition">
+                        <h3 className="text-lg font-semibold">Brake Pads</h3>
+                        <p className="text-red-600 font-bold">$50</p>
+                    </div>
+                    <div className="p-6 bg-gray-100 rounded-lg shadow hover:shadow-lg transition">
+                        <h3 className="text-lg font-semibold">Alloy Wheels</h3>
+                        <p className="text-red-600 font-bold">$200</p>
+                    </div>
+                    <div className="p-6 bg-gray-100 rounded-lg shadow hover:shadow-lg transition">
+                        <h3 className="text-lg font-semibold">LED Headlights</h3>
+                        <p className="text-red-600 font-bold">$120</p>
+                    </div>
+                </div>
+                <div className="mt-6">
+                    <Link href="/shop" className="px-6 py-3 bg-red-600 text-white rounded-lg text-lg font-semibold hover:bg-red-700 transition">
+                        View All Products
+                    </Link>
+                </div>
+            </section>
+
+            {/* Customer Testimonials */}
+            <section className="py-12 bg-gray-50 text-center">
+                <h2 className="text-3xl font-bold text-gray-900">What Our Customers Say</h2>
+                <div className="max-w-4xl mx-auto mt-6 px-6">
+                    <div className="p-6 bg-white rounded-lg shadow-md">
+                        <p className="text-gray-700 italic">
+                            `AutoStore has the best selection of auto parts! Their customer service is amazing, and my order arrived quickly!`
+                        </p>
+                        <p className="text-red-600 font-semibold mt-4">- John Doe</p>
+                    </div>
+                    <div className="p-6 bg-white rounded-lg shadow-md mt-4">
+                        <p className="text-gray-700 italic">
+                            `Great experience shopping at AutoStore. The quality of the parts exceeded my expectations!`
+                        </p>
+                        <p className="text-red-600 font-semibold mt-4">- Sarah Williams</p>
+                    </div>
+                </div>
+            </section>
+
+            {/* Newsletter Subscription */}
+            <section className="py-12 bg-white text-center">
+                <h2 className="text-3xl font-bold text-gray-900">Subscribe to Our Newsletter</h2>
+                <p className="text-lg text-gray-700 mt-2">
+                    Stay updated with the latest deals and offers on auto parts.
+                </p>
+                <div className="mt-6 flex justify-center">
+                    <input
+                        type="email"
+                        placeholder="Enter your email"
+                        className="px-4 py-2 border border-gray-400 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-red-400"
+                    />
+                    <button className="px-6 py-2 bg-red-600 text-white rounded-r-lg font-semibold hover:bg-red-700 transition">
+                        Subscribe
+                    </button>
+                </div>
+            </section>
         </main>
     );
 }

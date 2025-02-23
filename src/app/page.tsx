@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { FaShippingFast, FaHeadset, FaShieldAlt, FaCar } from "react-icons/fa";
 
 export default function HomePage() {
@@ -12,7 +13,7 @@ export default function HomePage() {
 
                 {/* Content */}
                 <div className="relative z-10 max-w-3xl w-full">
-                <h1 className="text-5xl font-extrabold">Welcome to AutoStore</h1>
+                <h1 className="text-5xl font-extrabold text-white">Welcome to AutoStore</h1>
                 <p className="text-lg mt-4">
                     Your #1 Marketplace for Auto Parts. Find quality spare parts, accessories, and car essentials at the best prices.
                 </p>
@@ -53,18 +54,24 @@ export default function HomePage() {
             <section className="py-12 bg-gray-50 text-center">
                 <h2 className="text-3xl font-bold text-gray-900">Shop by Category</h2>
                 <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 mt-6 px-6">
-                    <div className="p-6 bg-white rounded-lg shadow hover:shadow-lg transition">
-                        <h3 className="text-lg font-semibold">Engine Parts</h3>
-                    </div>
-                    <div className="p-6 bg-white rounded-lg shadow hover:shadow-lg transition">
-                        <h3 className="text-lg font-semibold">Brakes & Suspension</h3>
-                    </div>
-                    <div className="p-6 bg-white rounded-lg shadow hover:shadow-lg transition">
-                        <h3 className="text-lg font-semibold">Exterior Accessories</h3>
-                    </div>
-                    <div className="p-6 bg-white rounded-lg shadow hover:shadow-lg transition">
-                        <h3 className="text-lg font-semibold">Interior Accessories</h3>
-                    </div>
+                    {[
+                        { name: "Engine Parts", image: "/product3.png" },
+                        { name: "Brakes & Suspension", image: "/product2.png" },
+                        { name: "Exterior Accessories", image: "/product4.png" },
+                        { name: "Interior Accessories", image: "/product5.png" },
+                    ].map((category, index) => (
+                        <div key={index} className="p-6 bg-white rounded-lg shadow hover:shadow-lg transition">
+                            <Image 
+                                src={category.image} 
+                                alt={category.name} 
+                                width={300} 
+                                height={200} 
+                                className="w-full h-32 object-cover rounded-lg mb-4"
+                                priority // Loads images faster for better performance
+                            />
+                            <h3 className="text-lg font-semibold">{category.name}</h3>
+                        </div>
+                    ))}
                 </div>
             </section>
 
@@ -72,22 +79,28 @@ export default function HomePage() {
             <section className="py-12 bg-white text-center">
                 <h2 className="text-3xl font-bold text-gray-900">Trending Products</h2>
                 <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 mt-6 px-6">
-                    <div className="p-6 bg-gray-100 rounded-lg shadow hover:shadow-lg transition">
-                        <h3 className="text-lg font-semibold">Car Battery</h3>
-                        <p className="text-red-600 font-bold">$150</p>
-                    </div>
-                    <div className="p-6 bg-gray-100 rounded-lg shadow hover:shadow-lg transition">
-                        <h3 className="text-lg font-semibold">Brake Pads</h3>
-                        <p className="text-red-600 font-bold">$50</p>
-                    </div>
-                    <div className="p-6 bg-gray-100 rounded-lg shadow hover:shadow-lg transition">
-                        <h3 className="text-lg font-semibold">Alloy Wheels</h3>
-                        <p className="text-red-600 font-bold">$200</p>
-                    </div>
-                    <div className="p-6 bg-gray-100 rounded-lg shadow hover:shadow-lg transition">
-                        <h3 className="text-lg font-semibold">LED Headlights</h3>
-                        <p className="text-red-600 font-bold">$120</p>
-                    </div>
+                    {[
+                        { name: "Car Battery", price: "$150", image: "/product6.png" },
+                        { name: "Brake Pads", price: "$50", image: "/product7.png" },
+                        { name: "Alloy Wheels", price: "$200", image: "/product1.png" },
+                        { name: "LED Headlights", price: "$120", image: "/product2.png" },
+                        { name: "Oil Filter", price: "$30", image: "/product3.png" },
+                        { name: "Car Floor Mats", price: "$40", image: "/product4.png" },
+                        { name: "Air Filter", price: "$25", image: "/product5.png" },
+                        { name: "Steering Cover", price: "$35", image: "/product6.png" },
+                    ].map((product, index) => (
+                        <div key={index} className="p-6 bg-gray-100 rounded-lg shadow hover:shadow-lg transition">
+                            <Image 
+                                src={product.image} 
+                                alt={product.name} 
+                                width={300} 
+                                height={200} 
+                                className="w-full h-32 object-cover rounded-lg mb-4"
+                            />
+                            <h3 className="text-lg font-semibold">{product.name}</h3>
+                            <p className="text-red-600 font-bold">{product.price}</p>
+                        </div>
+                    ))}
                 </div>
                 <div className="mt-6">
                     <Link href="/shop" className="px-6 py-3 bg-red-600 text-white rounded-lg text-lg font-semibold hover:bg-red-700 transition">

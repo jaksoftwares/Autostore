@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa"; // For carousel navigation
 
 const categories = [
   "All Deals",
@@ -27,47 +28,50 @@ const deals = [
 
 export default function DealsPage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
-  // const [countdownTimers, setCountdownTimers] = useState({});
   const [countdownTimers, setCountdownTimers] = useState<Record<number, string>>({});
+  const [currentSlide, setCurrentSlide] = useState(0); // For carousel navigation
 
   // Function to update countdown timers
   useEffect(() => {
-    if (!deals || deals.length === 0) return; // ✅ Prevent running when there are no deals
-  
+    if (!deals || deals.length === 0) return;
+
     const updateTimers = () => {
       const newTimers: Record<number, string> = {};
-  
+
       deals.forEach((deal) => {
         const now = Date.now();
         const expiryTime = new Date(deal.expires).getTime();
         const timeLeft = expiryTime - now;
-  
+
         if (timeLeft > 0) {
           const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
           const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
           const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
           const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-  
+
           newTimers[deal.id] = `${days}d ${hours}h ${minutes}m ${seconds}s`;
         } else {
           newTimers[deal.id] = "Expired";
         }
       });
-  
+
       setCountdownTimers(newTimers);
     };
-  
-    // Run the timer update every second
+
     const interval = setInterval(updateTimers, 1000);
-  
-    // Initial update
     updateTimers();
-  
-    // Cleanup interval on unmount
     return () => clearInterval(interval);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [JSON.stringify(deals)]); // ✅ Stable dependency, prevents Next.js warnin
+  }, [JSON.stringify(deals)]);
 
+  // Carousel navigation
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev === deals.length - 1 ? 0 : prev + 1));
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? deals.length - 1 : prev - 1));
+  };
 
   const filteredDeals =
     selectedCategory === "all"
@@ -75,68 +79,115 @@ export default function DealsPage() {
       : deals.filter((deal) => deal.category.toLowerCase() === selectedCategory.toLowerCase());
 
   return (
-    <div className="container mx-auto px-4 py-6 grid grid-cols-1 md:grid-cols-4 gap-6 mt-16">
-      {/* Sidebar with Categories */}
-      <aside className="bg-white shadow-lg rounded-lg p-6 md:col-span-1">
-        <h2 className="text-xl font-bold mb-4">Filter by Category</h2>
-        <ul className="space-y-2">
-          {categories.map((cat, index) => (
-            <li
-              key={index}
-              className={`cursor-pointer p-2 rounded-lg ${selectedCategory === cat.toLowerCase() ? "bg-red-600 text-white" : "hover:bg-gray-200 text-gray-800"}`}
-              onClick={() => setSelectedCategory(cat.toLowerCase())}
-            >
-              {cat}
-            </li>
-          ))}
-        </ul>
-      </aside>
-
-      {/* Deals Section */}
-      <div className="md:col-span-3">
-        <h1 className="text-4xl font-bold mb-6 text-center md:text-left">Exclusive Deals & Discounts</h1>
-
-        {filteredDeals.length === 0 ? (
-          <p className="text-center text-gray-500 text-lg">No deals available in this category.</p>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredDeals.map((deal) => (
-              <div key={deal.id} className="bg-white p-4 rounded-lg shadow-md hover:shadow-xl transition transform hover:scale-105 relative">
-                <Link href={`/product/${deal.id}`}>
-                  <div className="relative w-full h-48 cursor-pointer">
-                    <Image src={deal.image} alt={deal.name} layout="fill" objectFit="cover" className="rounded-t-lg" />
-                  </div>
-                </Link>
-                <div className="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 rounded-lg text-sm">
-                  -{deal.discount}
-                </div>
-                <div className="mt-4">
-                  <h2 className="text-xl font-semibold">{deal.name}</h2>
-                  <div className="flex items-center mt-2">
-                    <span className="text-gray-500 line-through">{deal.oldPrice}</span>
-                    <span className="text-lg font-bold text-red-600 ml-2">{deal.newPrice}</span>
-                  </div>
-                  <div className="flex items-center mt-2">
-                    <span className="text-yellow-500 mr-1">
-                      {"★".repeat(Math.floor(deal.rating))}
-                      {"☆".repeat(5 - Math.floor(deal.rating))}
-                    </span>
-                    <span className="text-gray-600 text-sm">({deal.reviews})</span>
-                  </div>
-                  <div className="mt-3">
-                    <span className={`px-3 py-1 rounded-lg text-sm font-semibold ${countdownTimers[deal.id] === "Expired" ? "bg-gray-300 text-gray-600" : "bg-red-200 text-red-700"}`}>
-                      {countdownTimers[deal.id]}
-                    </span>
-                  </div>
-                </div>
-                <div className="flex justify-between mt-4">
-                  <button className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition">Add to Cart</button>
-                  <button className="bg-gray-200 px-4 py-2 rounded-lg hover:bg-gray-300 transition">Wishlist</button>
-                </div>
+    <div className="container mx-auto px-4 py-6 mt-16">
+      {/* Carousel Section */}
+      <div className="relative w-full h-96 mb-8 rounded-lg overflow-hidden shadow-lg">
+        {deals.map((deal, index) => (
+          <div
+            key={deal.id}
+            className={`absolute inset-0 transition-transform duration-500 ease-in-out ${index === currentSlide ? "translate-x-0" : "translate-x-full"}`}
+          >
+            <Image src={deal.image} alt={deal.name} layout="fill" objectFit="cover" className="rounded-lg" />
+            <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-end p-6">
+              <h2 className="text-3xl font-bold text-white">{deal.name}</h2>
+              <div className="flex items-center mt-2">
+                <span className="text-gray-300 line-through">{deal.oldPrice}</span>
+                <span className="text-2xl font-bold text-red-500 ml-2">{deal.newPrice}</span>
               </div>
-            ))}
+              <div className="flex items-center mt-2">
+                <span className="text-yellow-400 mr-1">
+                  {"★".repeat(Math.floor(deal.rating))}
+                  {"☆".repeat(5 - Math.floor(deal.rating))}
+                </span>
+                <span className="text-gray-300 text-sm">({deal.reviews} reviews)</span>
+              </div>
+              <div className="mt-3">
+                <span className="px-3 py-1 rounded-lg text-sm font-semibold bg-red-600 text-white">
+                  {countdownTimers[deal.id]}
+                </span>
+              </div>
+            </div>
           </div>
-        )}
+        ))}
+        {/* Carousel Navigation Buttons */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-75 p-2 rounded-full shadow-lg hover:bg-opacity-100 transition"
+        >
+          <FaChevronLeft className="text-gray-800" />
+        </button>
+        <button
+          onClick={nextSlide}
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-75 p-2 rounded-full shadow-lg hover:bg-opacity-100 transition"
+        >
+          <FaChevronRight className="text-gray-800" />
+        </button>
+      </div>
+
+      {/* Main Content */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        {/* Sidebar with Categories */}
+        <aside className="bg-white shadow-lg rounded-lg p-6 md:col-span-1">
+          <h2 className="text-xl font-bold mb-4">Filter by Category</h2>
+          <ul className="space-y-2">
+            {categories.map((cat, index) => (
+              <li
+                key={index}
+                className={`cursor-pointer p-2 rounded-lg ${selectedCategory === cat.toLowerCase() ? "bg-red-600 text-white" : "hover:bg-gray-200 text-gray-800"}`}
+                onClick={() => setSelectedCategory(cat.toLowerCase())}
+              >
+                {cat}
+              </li>
+            ))}
+          </ul>
+        </aside>
+
+        {/* Deals Section */}
+        <div className="md:col-span-3">
+          <h1 className="text-4xl font-bold mb-6 text-center md:text-left">Exclusive Deals & Discounts</h1>
+
+          {filteredDeals.length === 0 ? (
+            <p className="text-center text-gray-500 text-lg">No deals available in this category.</p>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {filteredDeals.map((deal) => (
+                <div key={deal.id} className="bg-white p-4 rounded-lg shadow-md hover:shadow-xl transition transform hover:scale-105 relative">
+                  <Link href={`/product/${deal.id}`}>
+                    <div className="relative w-full h-48 cursor-pointer">
+                      <Image src={deal.image} alt={deal.name} layout="fill" objectFit="cover" className="rounded-t-lg" />
+                    </div>
+                  </Link>
+                  <div className="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 rounded-lg text-sm">
+                    -{deal.discount}
+                  </div>
+                  <div className="mt-4">
+                    <h2 className="text-xl font-semibold">{deal.name}</h2>
+                    <div className="flex items-center mt-2">
+                      <span className="text-gray-500 line-through">{deal.oldPrice}</span>
+                      <span className="text-lg font-bold text-red-600 ml-2">{deal.newPrice}</span>
+                    </div>
+                    <div className="flex items-center mt-2">
+                      <span className="text-yellow-500 mr-1">
+                        {"★".repeat(Math.floor(deal.rating))}
+                        {"☆".repeat(5 - Math.floor(deal.rating))}
+                      </span>
+                      <span className="text-gray-600 text-sm">({deal.reviews})</span>
+                    </div>
+                    <div className="mt-3">
+                      <span className={`px-3 py-1 rounded-lg text-sm font-semibold ${countdownTimers[deal.id] === "Expired" ? "bg-gray-300 text-gray-600" : "bg-red-200 text-red-700"}`}>
+                        {countdownTimers[deal.id]}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex justify-between mt-4">
+                    <button className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition">Add to Cart</button>
+                    <button className="bg-gray-200 px-4 py-2 rounded-lg hover:bg-gray-300 transition">Wishlist</button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

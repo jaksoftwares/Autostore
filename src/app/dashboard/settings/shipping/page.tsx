@@ -1,7 +1,6 @@
 "use client";
 
-import ShippingSettings from "@/components/dashboard/ShippingSettings";
-
+import ShippingSettings from "./ShippingSettings";
 const ShippingSettingsPage = () => {
   return (
     <div>

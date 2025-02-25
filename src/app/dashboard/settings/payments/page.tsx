@@ -1,6 +1,6 @@
 "use client";
 
-import PaymentSettings from "@/components/dashboard/PaymentSettings";
+import PaymentSettings from "./PaymentSettings";
 
 const PaymentSettingsPage = () => {
   return (

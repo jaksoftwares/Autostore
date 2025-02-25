@@ -1,8 +1,8 @@
 "use client";
 
-import SalesChart from "@/components/dashboard/SalesChart";
-import TopProducts from "@/components/dashboard/TopProducts";
-import UserActivity from "@/components/dashboard/UserActivity";
+import SalesChart from "./SalesChart";
+import TopProducts from "./TopProducts";
+import UserActivity from "./UserActivity";
 
 const ReportsPage = () => {
   return (

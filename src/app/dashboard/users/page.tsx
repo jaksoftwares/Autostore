@@ -1,17 +1,26 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
-import UserTable from "@/components/dashboard/UserTable";
+import UserTable from "./UserTable";
 
-const sampleUsers = [
+// Define the User type (should match the one in UserTable)
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  role: string;
+  status: "Active" | "Inactive"; // Explicitly define possible status values
+}
+
+// Explicitly type the sampleUsers array
+const sampleUsers: User[] = [
   { id: 1, name: "John Doe", email: "john@example.com", role: "Admin", status: "Active" },
   { id: 2, name: "Jane Smith", email: "jane@example.com", role: "Seller", status: "Active" },
   { id: 3, name: "Mike Johnson", email: "mike@example.com", role: "Customer", status: "Inactive" },
 ];
 
 const UsersPage = () => {
-  const [users, setUsers] = useState(sampleUsers);
+  const [users] = useState(sampleUsers);
 
   return (
     <div>

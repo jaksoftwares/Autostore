@@ -1,6 +1,6 @@
 "use client";
 
-import CategoryForm from "@/components/dashboard/CategoryForm";
+import CategoryForm from "./CategoryForm";
 
 const AddCategoryPage = () => {
   return (

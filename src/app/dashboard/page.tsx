@@ -1,9 +1,9 @@
 "use client";
 
-import OverviewStats from "@/components/dashboard/OverviewStats";
-import RecentOrders from "@/components/dashboard/RecentOrders";
-import RecentUsers from "@/components/dashboard/RecentUsers";
-import SalesChart from "@/components/dashboard/SalesChart";
+import OverviewStats from "./Overviewstats";
+import OrdersPage from "./orders/page";
+import SalesChart from "./reports/SalesChart";
+import RecentUsers from "./RecentUsers";
 
 const DashboardPage = () => {
   return (
@@ -15,7 +15,7 @@ const DashboardPage = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
         {/* Recent Orders */}
-        <RecentOrders />
+        <OrdersPage />
 
         {/* Recent Users */}
         <RecentUsers />

@@ -1,6 +1,6 @@
 "use client";
 
-import PlatformSettings from "@/components/dashboard/PlatformSettings";
+import PlatformSettings from "./PlatformSettings";
 
 const PlatformSettingsPage = () => {
   return (

@@ -1,10 +1,16 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import CategoryForm from "@/components/dashboard/CategoryForm";
+import CategoryForm from "../CategoryForm";
 
 const EditCategoryPage = () => {
-  const { id } = useParams();
+  const params = useParams();
+  const id = params.id;
+
+  // Ensure id is a string
+  if (typeof id !== "string") {
+    return <div>Invalid category ID</div>; // Or redirect to an error page
+  }
 
   return (
     <div>

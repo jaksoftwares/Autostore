@@ -1,6 +1,6 @@
 "use client";
 
-import RoleManagement from "@/components/dashboard/RoleManagement";
+import RoleManagement from "./RoleManagement";
 
 const RolesPage = () => {
   return (

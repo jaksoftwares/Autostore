@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import CategoryList from "@/components/dashboard/CategoryList";
+import CategoryList from "./CategoryList";
 
 const CategoriesPage = () => {
   return (

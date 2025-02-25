@@ -11,11 +11,20 @@ const PlatformSettings = () => {
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value, type, checked } = e.target;
-    setSettings((prevSettings) => ({
-      ...prevSettings,
-      [name]: type === "checkbox" ? checked : value,
-    }));
+    const { name, value, type } = e.target;
+
+    // Narrow down the type of e.target to HTMLInputElement for checkboxes
+    if (type === "checkbox" && "checked" in e.target) {
+      setSettings((prevSettings) => ({
+        ...prevSettings,
+        [name]: (e.target as HTMLInputElement).checked,
+      }));
+    } else {
+      setSettings((prevSettings) => ({
+        ...prevSettings,
+        [name]: value,
+      }));
+    }
   };
 
   return (

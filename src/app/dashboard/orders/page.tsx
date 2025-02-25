@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
-import OrderTable from "@/components/dashboard/OrderTable";
+import OrderTable from "./OrderTable";
 
 const sampleOrders = [
   { id: 101, customer: "John Doe", total: 250, status: "Pending", date: "2025-02-23" },
@@ -11,7 +10,8 @@ const sampleOrders = [
 ];
 
 const OrdersPage = () => {
-  const [orders, setOrders] = useState(sampleOrders);
+   
+  const [orders] = useState(sampleOrders);
 
   return (
     <div>

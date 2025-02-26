@@ -1,9 +1,9 @@
 "use client";
 
-import OverviewStats from "./Overviewstats";
+import OverviewStats from "./components/Overviewstats";
 import OrdersPage from "./orders/page";
 import SalesChart from "./reports/SalesChart";
-import RecentUsers from "./RecentUsers";
+import RecentUsers from "./components/RecentUsers";
 
 const DashboardPage = () => {
   return (

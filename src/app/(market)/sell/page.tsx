@@ -1,8 +1,16 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import Sidebar from "@/components/sell/Sidebar"; // Adjust the import path as needed
+import { useState } from "react";
 
 export default function SellOnAutoStore() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
     <div className="bg-gray-50">
       {/* 🔥 Hero Section */}
@@ -25,8 +33,13 @@ export default function SellOnAutoStore() {
         </div>
       </section>
 
+      <Sidebar isOpen={isSidebarOpen} onClose={toggleSidebar} />
+
       {/* 📌 Why Sell on AutoStore? */}
       <section className="max-w-6xl mx-auto py-16 px-6">
+      <button  onClick={toggleSidebar}  className="md:hidden px-4 py-2 bg-red-600 text-white rounded-lg mb-4" >
+          {isSidebarOpen ? "Close Sidebar" : "Open Sidebar"}
+        </button>
         <h2 className="text-3xl font-bold text-center">Why Sell on AutoStore?</h2>
         <div className="grid md:grid-cols-3 gap-8 mt-8">
           <div className="bg-white p-6 rounded-lg shadow">

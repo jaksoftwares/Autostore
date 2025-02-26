@@ -5,12 +5,14 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { FiMenu, FiX, FiHome, FiBox, FiList, FiShoppingCart, FiUsers, FiBarChart2, FiSettings } from "react-icons/fi";
 
-const Sidebar = () => {
+const Sidebar = ({ onToggle }: { onToggle: (isOpen: boolean) => void }) => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(true);
 
   const toggleSidebar = () => {
-    setIsOpen(!isOpen);
+    const newState = !isOpen;
+    setIsOpen(newState);
+    onToggle(newState); // Notify layout about the state change
   };
 
   const links = [

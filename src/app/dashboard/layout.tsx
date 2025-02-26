@@ -5,6 +5,7 @@ import "../../styles/global.css";
 import { AuthProvider } from "@/context/AuthContext";
 import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true); // State for sidebar
@@ -25,6 +26,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             <div className={`flex-1 flex flex-col transition-all duration-300 ${isSidebarOpen ? "ml-64" : "ml-20"}`}>
               <Navbar />
               <main className="p-6 overflow-auto">{children}</main>
+              <Footer/>
             </div>
           </div>
         </AuthProvider>

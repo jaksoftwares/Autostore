@@ -16,7 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body className="bg-gray-100 text-gray-900">
+      <body className="bg-gray-100 text-gray-900 mx-auto">
         <AuthProvider>
           <Header />
           <main className="w-full px-0 py-6 min-h-screen">{children}</main>

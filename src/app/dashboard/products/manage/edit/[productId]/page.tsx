@@ -5,14 +5,9 @@ import { useParams, useRouter } from "next/navigation";
 import ImageUploader from "@/app/dashboard/products/components/ImageUploader";
 import Variations from "../../../components/ProductVariations";
 import SEOSettings from "../../../components/SEOSettings";
-// import DeleteProduct from "../../../components/DeleteProduct";
+import { Variation } from "@/types/variation"; // Import the shared type
 
 // Define types
-interface Variation {
-  name: string;
-  value: string;
-}
-
 interface SEOData {
   metaTitle: string;
   metaDescription: string;
@@ -27,11 +22,11 @@ interface Product {
   stock: string;
   description: string;
   images: string[];
-  variations: Variation[];
+  variations: Variation[]; // Use the shared Variation type
   seo: SEOData;
 }
 
-// Mock function to fetch product details (Replace with API call)
+// Mock function to fetch product details (updated to match Variation type)
 const fetchProductDetails = async (productId: string): Promise<Product> => {
   return {
     id: productId,
@@ -41,7 +36,10 @@ const fetchProductDetails = async (productId: string): Promise<Product> => {
     stock: "100",
     description: "Premium engine oil for high-performance vehicles.",
     images: ["/images/sample-product.jpg"],
-    variations: [{ name: "Size", value: "1L" }],
+    variations: [{ 
+      name: "Size", 
+      options: ["1L"] // Changed from value to options
+    }],
     seo: {
       metaTitle: "Buy Car Engine Oil",
       metaDescription: "High-quality engine oil for superior performance.",
@@ -187,7 +185,6 @@ const EditProductPage = () => {
         <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded-md w-full">
           Save Changes
         </button>
-        {/* <DeleteProduct productId={productData.id} onDeleteSuccess={() => router.push("/dashboard/products")} /> */}
       </form>
     </div>
   );

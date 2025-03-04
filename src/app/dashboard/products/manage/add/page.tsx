@@ -13,9 +13,9 @@ interface SEOData {
 }
 
 interface Variation {
-  // Define variation properties based on actual usage
-  option: string;
-  value: string;
+  id?: string;  // Optional for new variations not yet saved
+  name: string;  // e.g., "Color", "Size"
+  options: string[];  // e.g., ["Red", "Blue"]
 }
 
 interface ProductData {
@@ -25,7 +25,7 @@ interface ProductData {
   stock: string;
   description: string;
   images: string[];
-  variations: Variation[]; // Use a proper type instead of `any[]`
+  variations: Variation[];
   seo: SEOData;
 }
 
@@ -36,8 +36,8 @@ const AddProductPage = () => {
     price: "",
     stock: "",
     description: "",
-    images: [], // Explicitly typed as a string array
-    variations: [], // Explicitly typed as an array of Variation objects
+    images: [],
+    variations: [],
     seo: {
       metaTitle: "",
       metaDescription: "",
@@ -45,29 +45,25 @@ const AddProductPage = () => {
     },
   });
 
-  // Handle input change
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     setProductData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  // Handle image upload
   const handleImageUpload = (images: string[]) => {
     setProductData((prev) => ({ ...prev, images }));
   };
 
-  // Handle variations update
+  // Properly typed variations handler
   const handleVariationsUpdate = (variations: Variation[]) => {
     setProductData((prev) => ({ ...prev, variations }));
   };
 
-  // Handle SEO update
   const handleSEOUpdate = (seoData: SEOData) => {
     setProductData((prev) => ({ ...prev, seo: seoData }));
   };
 
-  // Handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Product Data:", productData);

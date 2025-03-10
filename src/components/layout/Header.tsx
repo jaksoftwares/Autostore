@@ -10,7 +10,7 @@ const Header = () => {
   const [categoriesOpen, setCategoriesOpen] = useState(false);
 
   return (
-    <header className="bg-white shadow-md fixed top-0 left-0 w-full z-50">
+    <header className="bg-white shadow-md  top-0  z-50">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo */}
         <Link href="/">

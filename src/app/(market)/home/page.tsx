@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { FaShippingFast, FaHeadset, FaShieldAlt, FaCar } from "react-icons/fa";
 import Sidebar from "@/components/home/Sidebar";
+import DealsSidebar from "@/components/home/RightSidebar";
 
 export default function HomePage() {
 
@@ -181,6 +182,8 @@ export default function HomePage() {
           </button>
         </div>
       </section>
+
+      <DealsSidebar/>
         </main>
     );
 }

@@ -10,7 +10,7 @@ const Header = () => {
   const [categoriesOpen, setCategoriesOpen] = useState(false);
 
   return (
-    <header className="bg-white shadow-md  top-0  z-50">
+    <header className="bg-white shadow-md  top-0  fixed z-[1000] ">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo */}
         <Link href="/">
@@ -24,7 +24,7 @@ const Header = () => {
           <div className="relative">
             {/* Categories Dropdown */}
             <button
-              className="hover:text-red-600 flex items-center gap-1"
+              className="hover:text-red-600 flex items-center gap-1 "
               onClick={() => setCategoriesOpen(!categoriesOpen)}
             >
               Categories <FaAngleDown />

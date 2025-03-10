@@ -68,7 +68,7 @@ const DealsSidebar = () => {
     <div
       className={`fixed inset-y-0 right-0 w-80 bg-white shadow-lg transform transition-transform duration-300 ease-in-out ${
         isOpen ? "translate-x-0" : "translate-x-full"
-      } z-50 mt-15 h-screen overflow-y-auto p-4 border-l border-gray-300`}
+      } z-50 mt-15 h-screen overflow-y-auto p-4 pt-1 border-l border-gray-300`}
     >
       {/* Sidebar Header */}
       <div className="flex justify-between items-center mb-4">

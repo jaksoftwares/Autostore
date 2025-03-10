@@ -13,9 +13,9 @@ export default function HomePage() {
 
     return (
             <main className="bg-gray-100 w-full overflow-x-hidden">
-                    <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+            <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
             {/* Hero Section */}
-            <section className="w-full h-[500px] flex flex-col items-center justify-center text-center bg-cover bg-center text-white px-6 relative"style={{ backgroundImage: "url('/bg1.png')" }} >
+            <section className="w-full h-[500px] flex flex-col items-center justify-center text-center bg-cover bg-center text-white px-6  z-[10] relative"style={{ backgroundImage: "url('/bg1.png')" }} >
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 

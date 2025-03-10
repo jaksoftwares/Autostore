@@ -23,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="bg-gray-100 text-gray-900">
         <AuthProvider>
           {/* Centered Header */}
-          <div className="max-w-[1430px] mx-auto px-4 md:px-6 lg:px-8">
+          <div className="max-w-[1430px] mx-auto px-4 md:px-6 lg:px-8 ">
             <Header />
           </div>
 
@@ -33,7 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </main>
 
           {/* Centered Footer */}
-          <div className="max-w-[1430px] mx-auto px-4 md:px-6 lg:px-8">
+          <div className="max-w-[1430px] mx-auto px-4 md:px-6 lg:px-8 ">
             <Footer />
           </div>
         </AuthProvider>
